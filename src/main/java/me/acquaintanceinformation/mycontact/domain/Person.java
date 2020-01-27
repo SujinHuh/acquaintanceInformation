@@ -1,43 +1,40 @@
 package me.acquaintanceinformation.mycontact.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Person {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
+    @Getter @Setter
     private String name;
 
+    @Getter @Setter
     private int age;
 
-    public Long getId() {
-        return id;
-    }
+    @Getter @Setter
+    private String hobby;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Getter @Setter
+    private String bloodType;
 
-    public String getName() {
-        return name;
-    }
+    @Getter @Setter
+    private String address;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Getter @Setter
+    private LocalDate birthdy;
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    @Getter @Setter
+    private String job;
 
     @Override
     public String toString() {

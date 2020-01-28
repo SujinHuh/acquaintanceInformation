@@ -1,8 +1,6 @@
 package me.acquaintanceinformation.mycontact.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,14 +11,19 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor// 인자가 없는 생성자
+@AllArgsConstructor //생성할때 인자값이 있는 생성자
+@RequiredArgsConstructor //    @GeneratedValue 자동으로 번호가 생성되니 값을 빼고 생성
 public class Person {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private int age;
 
     private String hobby;
@@ -36,4 +39,20 @@ public class Person {
 
     private String job;
 
+
+    public boolean equals(Object object) {
+
+        if (object == null) {
+            return false;
+        }
+        Person person = (Person) object;
+
+        if (!person.getName().equals(this.getName())) {
+            return false;
+        }
+        if (person.getAge() != this.getAge()) {
+            return false;
+        }
+        return true;
+    }
 }

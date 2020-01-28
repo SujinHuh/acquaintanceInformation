@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,17 +49,24 @@ class PersonRepositoryTest {
     @Test
     void constructor() {
 
-        Person person = new Person("Sujin",20);
+//        Person person = new Person("Sujin",20);
     }
 
     @Test
     void hashCodeEquals() {
 
-        Person personOne = new Person("Sujin",30);
-        Person personTwo = new Person("Sujin",30);
+        Person personOne = new Person("Sujin",30,"A");
+        Person personTwo = new Person("Sujin",30,"A");
 
         System.out.println(personOne.equals(personTwo));
         System.out.println(personOne.hashCode());
         System.out.println(personTwo.hashCode());
+
+        Map<Person,Integer> map = new HashMap<>();
+        map.put(personOne,personOne.getAge());
+
+
+        System.out.println(map);
+        System.out.println(map.get(personTwo));
     }
 }

@@ -4,6 +4,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor //생성할때 인자값이 있는 생성자
 @RequiredArgsConstructor //    @GeneratedValue 자동으로 번호가 생성되니 값을 빼고 생성
 @Data
-public class Person {
+public class  Person {
 
     @Id
     @GeneratedValue
@@ -37,4 +38,6 @@ public class Person {
 
     private String job;
 
+    @OneToOne
+    private Block block;
 }

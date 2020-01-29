@@ -43,7 +43,7 @@ class PersonRepositoryTest {
 
     @Test
     void allArgsConstructor() {
-        Person person = new Person(1l,"Sujin",10,"reading","B","Seoul","010-9053-", LocalDate.of(2020,1,1),"programer");
+//        Person person = new Person(1l,"Sujin",10,"reading","B","Seoul","010-9053-", LocalDate.of(2020,1,1),"programer");
     }
 
     @Test

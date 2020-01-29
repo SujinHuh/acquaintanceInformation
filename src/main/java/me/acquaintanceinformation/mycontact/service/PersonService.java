@@ -1,5 +1,6 @@
 package me.acquaintanceinformation.mycontact.service;
 
+import lombok.extern.slf4j.Slf4j;
 import me.acquaintanceinformation.mycontact.domain.Block;
 import me.acquaintanceinformation.mycontact.domain.Person;
 import me.acquaintanceinformation.mycontact.repository.BlockRepository;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PersonService {
 
     @Autowired
@@ -27,4 +29,12 @@ public class PersonService {
     }
 
 
+    public Person getPerson(Long id) {
+        Person person = personRepository.findById(id).get();
+
+//        System.out.println("person : "+ person);
+        log.info("person :{}",person);
+
+        return person;
+    }
 }

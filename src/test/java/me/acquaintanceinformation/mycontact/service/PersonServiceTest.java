@@ -47,24 +47,34 @@ class PersonServiceTest {
 
         personRepository.save(person);
         personRepository.findAll().forEach(System.out::println);
-System.out.println("====delete===");
-        personRepository.delete(person);
+//        System.out.println("====delete===");
+//        personRepository.delete(person);
+//        personRepository.findAll().forEach(System.out::println);
+//        System.out.println("====BlockRepository===");
+//        blockRepository.findAll().forEach(System.out::println);
+        System.out.println();
+        person.setBlock(null);
+        personRepository.save(person);
         personRepository.findAll().forEach(System.out::println);
-        System.out.println("====BlockRepository===");
         blockRepository.findAll().forEach(System.out::println);
-//        result.forEach(System.out::println);
     }
 
     private void givenPeople() {
 
         givenPerson("sujin", 10, "B");
-//        givenPerson("sujin", 33, "A");
-//        givenblockPerson("Han", 40, "A");
         givenblockPerson("abge", 20, "A");
         givenPerson("noq", 9, "O");
         givenblockPerson("sujin", 11, "AB");
     }
 
+    @Test
+    void getPerson() {
+        givenPeople();
+
+        Person person = personService.getPerson(2L);
+
+        System.out.println(person);
+    }
 
     private void givenPerson(String name, int age, String bloodType) {
         personRepository.save(new Person(name, age, bloodType));

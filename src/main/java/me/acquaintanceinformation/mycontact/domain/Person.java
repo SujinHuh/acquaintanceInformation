@@ -36,6 +36,6 @@ public class  Person {
 
     private String job;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private Block block;
 }

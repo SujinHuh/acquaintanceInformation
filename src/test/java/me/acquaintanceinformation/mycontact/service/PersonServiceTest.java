@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,25 +29,40 @@ class PersonServiceTest {
     @Test
     void getPeopleExcludeBlock() {
         givenPeople();
-        givenBlock();
 
         List<Person> result = personService.getPeopleExcludeBlock();
-//        System.out.println(result);
 
         result.forEach(System.out::println);
     }
 
+    @Test
+    void cascadeTest() {
+        givenPeople();
+
+        List<Person> result = personRepository.findAll();
+
+        Person person = result.get(3);
+        person.getBlock().setStartDate(LocalDate.now());
+        person.getBlock().setEndDate(LocalDate.now());
+
+        personRepository.save(person);
+        personRepository.findAll().forEach(System.out::println);
+System.out.println("====delete===");
+        personRepository.delete(person);
+        personRepository.findAll().forEach(System.out::println);
+        System.out.println("====BlockRepository===");
+        blockRepository.findAll().forEach(System.out::println);
+//        result.forEach(System.out::println);
+    }
 
     private void givenPeople() {
 
         givenPerson("sujin", 10, "B");
+//        givenPerson("sujin", 33, "A");
+//        givenblockPerson("Han", 40, "A");
         givenblockPerson("abge", 20, "A");
         givenPerson("noq", 9, "O");
         givenblockPerson("sujin", 11, "AB");
-    }
-
-    private void givenBlock() {
-        givenBlock("sujin");
     }
 
 
@@ -56,14 +72,10 @@ class PersonServiceTest {
 
     private void givenblockPerson(String name, int age, String bloodType) {
         Person blockPerson = new Person(name, age, bloodType);
-        blockPerson.setBlock(givenBlock(name));
+        blockPerson.setBlock(new Block());
 
         personRepository.save(blockPerson);
     }
 
-    private Block givenBlock(String name) {
-        return blockRepository.save(new Block(name));
-
-    }
 
 }

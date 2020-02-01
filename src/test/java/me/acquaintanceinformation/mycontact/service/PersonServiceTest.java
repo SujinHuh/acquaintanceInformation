@@ -61,9 +61,9 @@ class PersonServiceTest {
 
     private void givenPeople() {
 
-        givenPerson("sujin", 10, "B");
+        givenBlockPerson("sujin", 10, "B");
         givenBlockPerson("abge", 20, "A");
-        givenPerson("noq", 9, "O");
+        givenBlockPerson("noq", 9, "O");
         givenBlockPerson("sujin", 11, "AB");
     }
 
@@ -71,7 +71,7 @@ class PersonServiceTest {
     void getPerson() {
         givenPeople();
 
-        Person person = personService.getPerson(4L);
+        Person person = personService.getPerson(3L);
 
         System.out.println(person);
     }

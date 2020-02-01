@@ -62,16 +62,16 @@ class PersonServiceTest {
     private void givenPeople() {
 
         givenPerson("sujin", 10, "B");
-        givenblockPerson("abge", 20, "A");
+        givenBlockPerson("abge", 20, "A");
         givenPerson("noq", 9, "O");
-        givenblockPerson("sujin", 11, "AB");
+        givenBlockPerson("sujin", 11, "AB");
     }
 
     @Test
     void getPerson() {
         givenPeople();
 
-        Person person = personService.getPerson(2L);
+        Person person = personService.getPerson(4L);
 
         System.out.println(person);
     }
@@ -80,7 +80,7 @@ class PersonServiceTest {
         personRepository.save(new Person(name, age, bloodType));
     }
 
-    private void givenblockPerson(String name, int age, String bloodType) {
+    private void givenBlockPerson(String name, int age, String bloodType) {
         Person blockPerson = new Person(name, age, bloodType);
         blockPerson.setBlock(new Block());
 

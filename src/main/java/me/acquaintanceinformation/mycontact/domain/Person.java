@@ -11,7 +11,7 @@ import java.util.Objects;
 @AllArgsConstructor //생성할때 인자값이 있는 생성자
 @RequiredArgsConstructor //    @GeneratedValue 자동으로 번호가 생성되니 값을 빼고 생성
 @Data
-public class  Person {
+public class Person {
 
     @Id
     @GeneratedValue
@@ -24,7 +24,7 @@ public class  Person {
     private int age;
 
     private String hobby;
-@NonNull
+    @NonNull
     private String bloodType;
 
     private String address;
@@ -36,6 +36,7 @@ public class  Person {
 
     private String job;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER,optional = false)
+    @ToString.Exclude
     private Block block;
 }

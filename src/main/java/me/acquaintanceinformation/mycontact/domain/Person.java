@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor// 인자가 없는 생성자
 @AllArgsConstructor //생성할때 인자값이 있는 생성자
-@RequiredArgsConstructor //    @GeneratedValue 자동으로 번호가 생성되니 값을 빼고 생성
+@RequiredArgsConstructor //    @GeneratedValue 자동으로 번호가 생성되니 값을 빼고 생성z
 @Data
 public class Person {
 
@@ -36,7 +36,7 @@ public class Person {
 
     private String job;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER,optional = false)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Block block;
 }

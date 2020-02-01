@@ -35,6 +35,16 @@ class PersonServiceTest {
         result.forEach(System.out::println);
     }
 
+
+    @Test
+    void getPeopleByName() {
+
+        givenPeople();
+        List<Person> result = personService.getPeopleByName("sujin");
+
+        result.forEach(System.out::println);
+    }
+
     @Test
     void cascadeTest() {
         givenPeople();
@@ -61,9 +71,9 @@ class PersonServiceTest {
 
     private void givenPeople() {
 
-        givenBlockPerson("sujin", 10, "B");
+        givenPerson("sujin", 10, "B");
         givenBlockPerson("abge", 20, "A");
-        givenBlockPerson("noq", 9, "O");
+        givenPerson("noq", 9, "O");
         givenBlockPerson("sujin", 11, "AB");
     }
 

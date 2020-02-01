@@ -1,9 +1,11 @@
 package me.acquaintanceinformation.mycontact.repository;
 
 import me.acquaintanceinformation.mycontact.domain.Person;
+import me.acquaintanceinformation.mycontact.domain.dto.Birthday;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -11,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PersonRepositoryTest {
@@ -20,15 +21,10 @@ class PersonRepositoryTest {
     PersonRepository personRepository;
 
     private void givenPerson(String name, int age,String bloodType) {
-        Person person = new Person(name, age,bloodType);
+        Person person = new Person(name, age,null);
     }
 
-    private void givenPerson(String name, int age, String bloodType,LocalDate birthday) {
-        Person person = new Person(name, age, bloodType);
-        person.setBirthdy(birthday);
 
-        personRepository.save(person);
-    }
 
 
     @Test
@@ -100,14 +96,25 @@ class PersonRepositoryTest {
 
 
     @Test
+    @Transactional(noRollbackFor = Exception.class)
     void findByBirthdatBetween() {
+        givenPerson("kevin",22,"B",LocalDate.of(1999,2, 15));
         givenPerson("sujin", 10, "B",LocalDate.of(1994,12,20));
         givenPerson("martin", 9, "A",LocalDate.of(1992,7,20));
         givenPerson("minchi", 11, "AB",LocalDate.of(1993,1,5));
         givenPerson("sopia", 15, "B",LocalDate.of(1994,2,28));
         givenPerson("Jon", 15, "B",LocalDate.of(1995,12,29));
-        List<Person> result = personRepository.findByBirthdyBetween(LocalDate.of(199,12,20), LocalDate.of(1995,12,29));
+
+        List<Person> result = personRepository.findByMothOfBirthday(2);
 
         result.forEach(System.out::println);
+    }
+
+    private void givenPerson(String name, int age, String bloodType,LocalDate birthday) {
+
+        Person person = new Person(name, age, bloodType);
+        person.setBirthday(new Birthday(birthday));
+
+        personRepository.save(person);
     }
 }

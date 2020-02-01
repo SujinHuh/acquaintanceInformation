@@ -1,10 +1,10 @@
 package me.acquaintanceinformation.mycontact.domain;
 
 import lombok.*;
+import me.acquaintanceinformation.mycontact.domain.dto.Birthday;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Objects;
+import javax.validation.Valid;
 
 @Entity
 @NoArgsConstructor// 인자가 없는 생성자
@@ -32,7 +32,9 @@ public class Person {
     @ToString.Exclude
     private String phoneNumber;
 
-    private LocalDate birthdy;
+    @Valid
+    @Embedded
+    private Birthday birthday;
 
     private String job;
 
